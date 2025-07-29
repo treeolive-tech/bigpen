@@ -27,6 +27,7 @@ SECRET_KEY = config(
     "SECRET_KEY", default="keep the SECRET_KEY used in production secret!"
 )
 
+
 # 🌐 Site Configuration
 
 SITE_URL = config("SITE_URL", default="https://preview.bigpen.co.ke")
@@ -41,6 +42,7 @@ SITE_AUTHOR = config("SITE_AUTHOR", default="christianwhocodes")
 SITE_AUTHOR_URL = config(
     "SITE_AUTHOR_URL", default="https://github.com/christianwhocodes/"
 )
+
 
 # 🖼️ Site Assets
 
@@ -60,10 +62,26 @@ SITE_MANIFEST = config("SITE_MANIFEST", default="/lib/static/core/manifest.webma
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+
+
+# Backend Config
+
 BACKEND_DIR = BASE_DIR / "backend"
-WEB_FRONTEND_DIR = BASE_DIR / "frontend"
+
+
+# Frontend Web Config
+
+FRONTEND_WEB_DIR = BASE_DIR / "frontend"
+
+FRONTEND_WEB_URL = "/"
+
+
+# Allowed Hosts
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+
+# Installed Apps
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -78,7 +96,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "django_ckeditor_5",
     "core.globals",
-    "core.auths",
+    "core.accounts",
     "core.addresses",
     "core.lists",
     "core.articles",
@@ -88,9 +106,17 @@ if DEBUG:
     INSTALLED_APPS.append("django_browser_reload")
 
 
+# Navigation Type
+
 NAVIGATION_TYPE = "navbar"
 
+
+# URL Configuration
+
 ROOT_URLCONF = "core.settings.urls"
+
+
+# WSGI Application
 
 WSGI_APPLICATION = "core.settings.wsgi.application"
 
@@ -111,11 +137,17 @@ DATABASES = {
 # https://docs.djangoproject.com/en/stable/topics/email/
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 # EMAIL_USE_TLS = True
+
 # EMAIL_USE_SSL = False
+
 # EMAIL_PORT = "587"
+
 # EMAIL_HOST_USER = config("EMAIL_HOST_USER", default=None)
+
 # EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default=None)
+
 # EMAIL_HOST = config("EMAIL_HOST", default=None)
 
 
@@ -177,9 +209,8 @@ TEMPLATES = [
 ]
 
 
-# Static & Media files (CSS, Sass/SCSS, JavaScript, Images)
+# Static files (including Sass)
 # https://docs.djangoproject.com/en/stable/howto/static-files/
-# https://docs.djangoproject.com/en/stable/ref/settings/#media-files
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -188,15 +219,21 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILE_DIRS = [
-    WEB_FRONTEND_DIR / "node_modules",
+    FRONTEND_WEB_DIR / "node_modules",
 ]
+
+STATIC_URL = "/static/"
+
+STATIC_ROOT = BACKEND_DIR / "static"
 
 SASS_PRECISION = 8
 
-STATIC_URL = "/static/"
+
+# Media files
+# https://docs.djangoproject.com/en/stable/ref/settings/#media-files
+
 MEDIA_URL = "/media/"
 
-STATIC_ROOT = BACKEND_DIR / "static"
 MEDIA_ROOT = BACKEND_DIR / "media"
 
 
@@ -204,8 +241,11 @@ MEDIA_ROOT = BACKEND_DIR / "media"
 # https://docs.djangoproject.com/en/stable/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
+
 TIME_ZONE = "Africa/Nairobi"
+
 USE_I18N = True
+
 USE_TZ = True
 
 

@@ -5,7 +5,7 @@ from django.db import models
 
 class ArticleCategory(models.Model):
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = "Article Categories"
 
     name = models.CharField(max_length=100, help_text="Category Name")
 

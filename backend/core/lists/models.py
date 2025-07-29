@@ -1,14 +1,13 @@
-from django.db import models
-
 from core.globals.models import (
     AbstractBootstrapIcon,
-    AbstractCreatedUpdatedAt,
+    AbstractCreatedAtUpdatedAt,
     AbstractDisplayOrder,
 )
+from django.db import models
 
 
 class ListCategory(
-    AbstractDisplayOrder, AbstractBootstrapIcon, AbstractCreatedUpdatedAt
+    AbstractDisplayOrder, AbstractBootstrapIcon, AbstractCreatedAtUpdatedAt
 ):
     class Meta:
         ordering = ["display_order", "name"]
@@ -23,7 +22,7 @@ class ListCategory(
         return self.name
 
 
-class ListItem(AbstractDisplayOrder, AbstractBootstrapIcon, AbstractCreatedUpdatedAt):
+class ListItem(AbstractDisplayOrder, AbstractBootstrapIcon, AbstractCreatedAtUpdatedAt):
     class Meta:
         ordering = ["display_order", "name"]
 
