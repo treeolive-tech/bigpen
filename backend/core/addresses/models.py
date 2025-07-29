@@ -1,7 +1,6 @@
+from core.globals.models import AbstractDisplayOrder
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
-from core.globals.models import AbstractDisplayOrder
 
 
 class AbstractAddress(models.Model):
@@ -23,6 +22,7 @@ class SocialMediaAddress(AbstractAddress, AbstractDisplayOrder):
 
     class Meta:
         ordering = ["display_order", "name"]
+        verbose_name_plural = "Social Media Addresses"
 
     MODEL_CHOICES = [
         ("facebook", "Facebook"),
@@ -95,6 +95,7 @@ class PhoneAddress(AbstractAddress, AbstractDisplayOrder):
 
     class Meta:
         ordering = ["display_order", "number"]
+        verbose_name_plural = "Phone Addresses"
 
     number = PhoneNumberField(
         region="KE",
@@ -173,6 +174,7 @@ class EmailAddress(AbstractAddress, AbstractDisplayOrder):
 
     class Meta:
         ordering = ["display_order", "email"]
+        verbose_name_plural = "Email Addresses"
 
     email = models.EmailField(
         help_text="Email address (e.g., user@example.com)",
@@ -215,6 +217,7 @@ class PhysicalAddress(AbstractAddress, AbstractDisplayOrder):
 
     class Meta:
         ordering = ["display_order", "label", "city"]
+        verbose_name_plural = "Physical Addresses"
 
     label = models.CharField(
         max_length=100,

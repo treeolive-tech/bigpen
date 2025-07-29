@@ -7,10 +7,10 @@ from django.db import models
 
 
 class ListCategory(
-    AbstractDisplayOrder, AbstractBootstrapIcon, AbstractCreatedAtUpdatedAt
+AbstractCreatedAtUpdatedAt
 ):
     class Meta:
-        ordering = ["display_order", "name"]
+        ordering = ["name"]
         verbose_name_plural = "List categories"
 
     name = models.CharField(
