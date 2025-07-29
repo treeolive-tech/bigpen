@@ -9,17 +9,11 @@ class ListCategoryAdmin(admin.ModelAdmin):
     Admin for ListCategory model. Allow permissions only for superusers.
     """
 
-    list_display = (
-        "name",
-        "bootstrap_icon",
-        "display_order",
-    )
-    list_editable = ("display_order",)
-    ordering = ("display_order",)
+    list_display = ("name",)
+    ordering = ("name",)
     search_fields = ("name",)
     fieldsets = (
         ("Category Details", {"fields": ("name",)}),
-        ("Display Options", {"fields": ("bootstrap_icon", "display_order")}),
         ("Timestamps", {"fields": ("created_at", "updated_at")}),
     )
     readonly_fields = ("created_at", "updated_at")

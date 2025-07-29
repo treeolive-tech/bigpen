@@ -25,7 +25,8 @@ class AbstractBootstrapIcon(models.Model):
 
 class AbstractCreatedAtUpdatedAt(models.Model):
     created_at = models.DateTimeField(
-        auto_now_add=True, help_text="Date and time created."
+        auto_now_add=True,
+        help_text="Date and time created.",
     )
     updated_at = models.DateTimeField(
         auto_now=True,
