@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from core.globals.adminsite import admin_site
+
 from .forms import SocialMediaAddressForm
 from .models import (
     EmailAddress,
@@ -9,7 +11,7 @@ from .models import (
 )
 
 
-@admin.register(SocialMediaAddress)
+@admin.register(SocialMediaAddress, site=admin_site)
 class ContactSocialLinkAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactSocialLink model, supporting listing, filtering, searching,
@@ -43,7 +45,7 @@ class ContactSocialLinkAdmin(admin.ModelAdmin):
         return ()
 
 
-@admin.register(PhoneAddress)
+@admin.register(PhoneAddress, site=admin_site)
 class ContactNumberAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactNumber model with support for listing, filtering,
@@ -88,7 +90,7 @@ class ContactNumberAdmin(admin.ModelAdmin):
         return ()
 
 
-@admin.register(EmailAddress)
+@admin.register(EmailAddress, site=admin_site)
 class ContactEmailAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactEmail model with support for listing, filtering,
@@ -117,7 +119,7 @@ class ContactEmailAdmin(admin.ModelAdmin):
         return ()
 
 
-@admin.register(PhysicalAddress)
+@admin.register(PhysicalAddress, site=admin_site)
 class ContactAddressAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactAddress model supporting listing, filtering,

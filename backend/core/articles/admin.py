@@ -1,10 +1,12 @@
 from django.contrib import admin
 
+from core.globals.adminsite import admin_site
+
 from .forms import ArticleForm
 from .models import Article, ArticleCategory, ArticleTag
 
 
-@admin.register(Article)
+@admin.register(Article, site=admin_site)
 class ArticleAdmin(admin.ModelAdmin):
     # Hide author field from the admin form
     exclude = ("author",)
@@ -38,5 +40,5 @@ class ArticleAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(ArticleCategory)
-admin.site.register(ArticleTag)
+admin_site.register(ArticleCategory)
+admin_site.register(ArticleTag)

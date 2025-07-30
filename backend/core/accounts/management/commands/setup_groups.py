@@ -1,4 +1,6 @@
 from django.apps import apps
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
@@ -161,3 +163,213 @@ class Command(BaseCommand):
             return command_name in commands
         except Exception:
             return False
+
+
+class AbstractGroupSetupCommand(BaseCommand):
+    """
+    Base class for Django management commands that create groups with permissions.
+
+    Subclasses should define:
+    - groups_config: List of dictionaries with group configuration
+    - help: Help text for the command
+    - Optional: get_model_display_name() method for custom model name formatting
+    """
+
+    groups_config = []  # Override in subclasses
+
+    def handle(self, *args, **options):
+        if not self.groups_config:
+            self.stdout.write(
+                self.style.ERROR("No groups configuration defined in subclass")
+            )
+            return
+
+        self.stdout.write("Setting up groups...")
+
+        total_permissions_added = 0
+        total_permissions_existed = 0
+
+        for group_config in self.groups_config:
+            permissions_added, permissions_existed = self._setup_group(group_config)
+            total_permissions_added += permissions_added
+            total_permissions_existed += permissions_existed
+
+        self._print_final_summary(total_permissions_added, total_permissions_existed)
+
+    def _setup_group(self, group_config):
+        """Set up a single group with its permissions."""
+        group_name = group_config["name"]
+        models_permissions = group_config["models_permissions"]
+        description = group_config.get("description", "")
+
+        self._print_group_header(group_name)
+
+        # Create or get the group
+        group, created = Group.objects.get_or_create(name=group_name)
+
+        if created:
+            self.stdout.write(self.style.SUCCESS(f"✓ Created {group_name} group"))
+        else:
+            self.stdout.write(
+                self.style.WARNING(f"→ {group_name} group already exists")
+            )
+
+        permissions_added = 0
+        permissions_already_existed = 0
+
+        # Add permissions to the group
+        for model, permission_codenames in models_permissions:
+            added, existed = self._process_model_permissions(
+                group, model, permission_codenames
+            )
+            permissions_added += added
+            permissions_already_existed += existed
+
+        self._print_group_summary(
+            group_name,
+            description,
+            permissions_added,
+            permissions_already_existed,
+            group.permissions.count(),
+        )
+
+        return permissions_added, permissions_already_existed
+
+    def _process_model_permissions(self, group, model, permission_codenames):
+        """Process permissions for a single model."""
+        content_type = ContentType.objects.get_for_model(model)
+        model_name = model._meta.model_name
+
+        self.stdout.write(f"\nProcessing {model.__name__} permissions:")
+
+        permissions_added = 0
+        permissions_already_existed = 0
+
+        for codename in permission_codenames:
+            perm_codename = f"{codename}_{model_name}"
+
+            try:
+                permission = Permission.objects.get(
+                    codename=perm_codename, content_type=content_type
+                )
+
+                if group.permissions.filter(id=permission.id).exists():
+                    self.stdout.write(
+                        f"  → {codename.title()} permission already exists"
+                    )
+                    permissions_already_existed += 1
+                else:
+                    group.permissions.add(permission)
+                    self.stdout.write(
+                        self.style.SUCCESS(f"  ✓ Added {codename.title()} permission")
+                    )
+                    permissions_added += 1
+
+            except Permission.DoesNotExist:
+                self.stdout.write(
+                    self.style.ERROR(f"  ✗ Permission {perm_codename} not found")
+                )
+
+        return permissions_added, permissions_already_existed
+
+    def _print_group_header(self, group_name):
+        """Print header for group setup section."""
+        if len(self.groups_config) > 1:
+            self.stdout.write(f"\n{'=' * 60}")
+            self.stdout.write(f"Setting up {group_name}")
+            self.stdout.write(f"{'=' * 60}")
+
+    def _print_group_summary(self, group_name, description, added, existed, total):
+        """Print summary for a single group."""
+        if len(self.groups_config) > 1:
+            self.stdout.write(f"\n{group_name} Summary:")
+            if description:
+                self.stdout.write(f"  Description: {description}")
+            self.stdout.write(f"  Permissions added: {added}")
+            self.stdout.write(f"  Permissions already existed: {existed}")
+            self.stdout.write(f"  Total permissions in group: {total}")
+
+    def _print_final_summary(self, total_added, total_existed):
+        """Print the final summary of all operations."""
+        separator = "=" * (60 if len(self.groups_config) > 1 else 50)
+
+        self.stdout.write(f"\n{separator}")
+        self.stdout.write(self.style.SUCCESS("SETUP COMPLETE"))
+        self.stdout.write(separator)
+
+        if len(self.groups_config) == 1:
+            # Single group format (like stock groups)
+            group_config = self.groups_config[0]
+            group_name = group_config["name"]
+            group = Group.objects.get(name=group_name)
+
+            self.stdout.write(f"Group: {group_name}")
+            self.stdout.write(f"Permissions added: {total_added}")
+            self.stdout.write(f"Permissions already existed: {total_existed}")
+            self.stdout.write(f"Total permissions: {group.permissions.count()}")
+
+            self._print_group_permissions(group)
+
+        else:
+            # Multiple groups format (like orders groups)
+            self.stdout.write("Groups created:")
+            for group_config in self.groups_config:
+                group_name = group_config["name"]
+                group = Group.objects.get(name=group_name)
+                self.stdout.write(
+                    f"  • {group_name} ({group.permissions.count()} permissions)"
+                )
+
+            self.stdout.write(f"\nTotal permissions added: {total_added}")
+            self.stdout.write(f"Total permissions already existed: {total_existed}")
+
+            # List permissions for each group
+            for group_config in self.groups_config:
+                group_name = group_config["name"]
+                group = Group.objects.get(name=group_name)
+                self.stdout.write(f"\n{group_name} permissions:")
+                self._print_group_permissions(group, indent="  ")
+
+        self._print_success_message()
+        self._print_usage_notes()
+
+    def _print_group_permissions(self, group, indent=""):
+        """Print all permissions for a group."""
+        if len(self.groups_config) == 1:
+            self.stdout.write("\nCurrent group permissions:")
+            indent = "  "
+
+        for perm in group.permissions.all().order_by("content_type__model", "codename"):
+            model_name = self.get_model_display_name(perm.content_type.model)
+            action = perm.codename.split("_")[0].title()
+            self.stdout.write(f"{indent}• {model_name}: {action}")
+
+    def get_model_display_name(self, model_name):
+        """
+        Get display name for a model. Override in subclasses for custom formatting.
+
+        Args:
+            model_name: The model name from content_type.model
+
+        Returns:
+            Formatted model name for display
+        """
+        return model_name.title()
+
+    def _print_success_message(self):
+        """Print the final success message. Override in subclasses if needed."""
+        if len(self.groups_config) == 1:
+            group_name = self.groups_config[0]["name"]
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"\n✓ {group_name} group setup completed successfully!"
+                )
+            )
+        else:
+            self.stdout.write(
+                self.style.SUCCESS("\n✓ Groups setup completed successfully!")
+            )
+
+    def _print_usage_notes(self):
+        """Print usage notes. Override in subclasses to add custom notes."""
+        pass
