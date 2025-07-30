@@ -12,10 +12,13 @@ class UserForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # Safely get AUTH_USERNAME from settings
+        auth_username = getattr(settings, "AUTH_USERNAME", {})
+
         # Update username field
-        self.fields["username"].label = settings.AUTH_USERNAME.get("label", "Username")
-        self.fields["username"].widget.attrs["placeholder"] = (
-            settings.AUTH_USERNAME.get("placeholder", "Enter your username")
+        self.fields["username"].label = auth_username.get("label", "Username")
+        self.fields["username"].widget.attrs["placeholder"] = auth_username.get(
+            "placeholder", "Enter your username"
         )
 
         # Filter groups field to hide "superuser" group for non-superusers

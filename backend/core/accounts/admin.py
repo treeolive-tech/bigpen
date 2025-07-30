@@ -15,7 +15,7 @@ class GroupAdmin(AbstractGroupAdmin):
 
 @admin.register(User, site=admin_site)
 class UserAdmin(AbstractUserAdmin):
-    readonly_fields = ("is_staff", "is_superuser")
+    readonly_fields = ("is_staff", "is_superuser", "date_joined", "last_login")
     form = UserForm
 
     def get_form(self, request, obj=None, **kwargs):
