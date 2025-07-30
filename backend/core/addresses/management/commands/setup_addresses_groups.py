@@ -20,6 +20,7 @@ class Command(AbstractGroupSetupCommand):
 
     groups_config = [
         {
+            "id": 20,
             "name": "ADDRESSES_MANAGER",
             "models_permissions": [
                 (SocialMediaAddress, ["add", "change", "delete", "view"]),

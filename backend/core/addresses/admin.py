@@ -12,7 +12,7 @@ from .models import (
 
 
 @admin.register(SocialMediaAddress, site=admin_site)
-class ContactSocialLinkAdmin(admin.ModelAdmin):
+class SocialMediaAddressAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactSocialLink model, supporting listing, filtering, searching,
     and inline editing of URLs and order. Restricts the 'name' field to read-only on edit.
@@ -46,7 +46,7 @@ class ContactSocialLinkAdmin(admin.ModelAdmin):
 
 
 @admin.register(PhoneAddress, site=admin_site)
-class ContactNumberAdmin(admin.ModelAdmin):
+class PhoneAddressAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactNumber model with support for listing, filtering,
     searching, ordering, and inline editing of the 'order' field.
@@ -91,7 +91,7 @@ class ContactNumberAdmin(admin.ModelAdmin):
 
 
 @admin.register(EmailAddress, site=admin_site)
-class ContactEmailAdmin(admin.ModelAdmin):
+class EmailAddresslAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactEmail model with support for listing, filtering,
     searching, ordering, and inline editing of the 'order' field.
@@ -120,7 +120,7 @@ class ContactEmailAdmin(admin.ModelAdmin):
 
 
 @admin.register(PhysicalAddress, site=admin_site)
-class ContactAddressAdmin(admin.ModelAdmin):
+class PhysicalAddressAdmin(admin.ModelAdmin):
     """
     Admin interface for ContactAddress model supporting listing, filtering,
     searching, ordering, and displaying detailed address fields.
