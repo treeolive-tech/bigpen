@@ -1,6 +1,7 @@
-from django.conf import settings
-from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
 from django.db import models
+
+User = get_user_model()
 
 
 class ArticleCategory(models.Model):
@@ -32,7 +33,7 @@ class Article(models.Model):
         auto_now_add=True, help_text="Date Created (auto-filled)"
     )
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE,
         related_name="blog_articles",
         help_text="Article Author",
@@ -81,41 +82,3 @@ class ArticleComment(models.Model):
     email = models.EmailField(help_text="Your email*")
     website = models.URLField(help_text="Your website (Optional)", blank=True)
     content = models.TextField(help_text="Your Comment*")
-
-
-class AbstractIsArticleWriterStaff(models.Model):
-    """
-    Abstract model to define staff roles related to article writing.
-    """
-
-    is_article_writer = models.BooleanField(
-        default=False,
-        help_text="Designates whether this user can write articles.",
-    )
-    is_article_editor = models.BooleanField(
-        default=False,
-        help_text="Designates whether this user can edit articles.",
-    )
-
-    class Meta:
-        abstract = True
-
-    def clean(self):
-        errors = {}
-
-        if not self.is_staff:
-            if self.is_article_writer:
-                errors["is_article_writer"] = (
-                    "User must be staff to be an article writer."
-                )
-            if self.is_article_editor:
-                errors["is_article_editor"] = (
-                    "User must be staff to be an article editor."
-                )
-
-        if errors:
-            raise ValidationError(errors)
-
-    def save(self, *args, **kwargs):
-        self.full_clean()  # ensures clean() is called before saving
-        super().save(*args, **kwargs)

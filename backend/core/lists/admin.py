@@ -1,9 +1,11 @@
 from django.contrib import admin
 
+from core.globals.adminsite import admin_site
+
 from .models import ListCategory, ListItem
 
 
-@admin.register(ListCategory)
+@admin.register(ListCategory, site=admin_site)
 class ListCategoryAdmin(admin.ModelAdmin):
     """
     Admin for ListCategory model. Allow permissions only for superusers.
@@ -34,7 +36,7 @@ class CategoryNameFilter(admin.SimpleListFilter):
         return queryset
 
 
-@admin.register(ListItem)
+@admin.register(ListItem, site=admin_site)
 class ListItemAdmin(admin.ModelAdmin):
     """
     Admin for ListItem model with enhanced display, filtering,
