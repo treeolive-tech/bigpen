@@ -4,6 +4,7 @@ ROOT_URLCONF = "custom.settings.urls"
 
 ALLOWED_HOSTS += [  # noqa: F405
     "dev.tawalabora.space",
+    "bigpen.tawalabora.space",
     "bigpen.co.ke",
     "www.bigpen.co.ke",
     "preview.bigpen.co.ke",
