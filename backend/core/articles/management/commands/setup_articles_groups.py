@@ -5,28 +5,62 @@ from ...models import Article, ArticleCategory, ArticleTag
 
 class Command(AbstractGroupSetupCommand):
     """
-    Creates the ARTICLES_AUTHOR group with appropriate permissions for article management.
+    Creates article management groups with appropriate permissions:
 
-    This command creates a group with full CRUD permissions for article-related models:
-    - ArticleCategory: Add, Change, Delete, View
-    - ArticleTag: Add, Change, Delete, View
-    - Article: Add, Change, Delete, View
+    ARTICLES_OPERATOR:
+    - Articles: Full CRUD (with custom admin logic to restrict delete to own articles)
+    - Categories: View only (cannot create/modify site-wide categories)
+    - Tags: Add, Change, View (cannot delete to avoid breaking other articles)
+
+    ARTICLES_MANAGER:
+    - Articles: Full CRUD (can manage any article)
+    - Categories: Full CRUD (can manage site-wide categories)
+    - Tags: Full CRUD (can manage all tags)
 
     The command is idempotent - it can be run multiple times safely.
     """
 
-    help = "Create ARTICLES_AUTHOR group with article management permissions"
+    help = "Create ARTICLES_OPERATOR and ARTICLES_MANAGER groups with appropriate permissions"
 
     groups_config = [
         {
-            "name": "ARTICLES_AUTHOR",
+            "id": 22,
+            "name": "ARTICLES_OPERATOR",
             "models_permissions": [
-                (ArticleCategory, ["add", "change", "delete", "view"]),
-                (ArticleTag, ["add", "change", "delete", "view"]),
-                (Article, ["add", "change", "delete", "view"]),
+                (
+                    ArticleCategory,
+                    ["view"],
+                ),  # View only - can't modify site-wide categories
+                (
+                    ArticleTag,
+                    ["add", "change", "view", "delete"],
+                ),  # Can create/edit but not delete tags
+                (
+                    Article,
+                    ["add", "change", "delete", "view"],
+                ),  # Full CRUD (delete restricted in admin)
             ],
-            "description": "Full CRUD permissions for articles, categories, and tags",
-        }
+            "description": "Authors can create/edit their own articles, manage tags, but only view categories. Categories are managed by ARTICLES_MANAGER group.",
+        },
+        {
+            "id": 23,
+            "name": "ARTICLES_MANAGER",
+            "models_permissions": [
+                (
+                    ArticleCategory,
+                    ["add", "change", "delete", "view"],
+                ),  # Full category management
+                (
+                    ArticleTag,
+                    ["add", "change", "delete", "view"],
+                ),  # Full tag management
+                (
+                    Article,
+                    ["add", "change", "delete", "view"],
+                ),  # Full article management
+            ],
+            "description": "Full management permissions for all articles, categories, and tags",
+        },
     ]
 
     def get_model_display_name(self, model_name):
