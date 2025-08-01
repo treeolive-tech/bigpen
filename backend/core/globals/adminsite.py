@@ -1,3 +1,4 @@
+from decouple import config
 from django.conf import settings
 from django.contrib.admin import AdminSite as AbstractAdminSite
 from django.utils.translation import gettext_lazy as _
@@ -8,10 +9,11 @@ class AdminSite(AbstractAdminSite):
     Custom admin site for the organization.
     """
 
-    site_name = settings.SITE_NAME
+    site_name = config("SITE_NAME", default="")
     site_header = _(f"{site_name} Admin")
     site_title = _(f"{site_name} Admin Portal")
     index_title = _(f"Welcome to the {site_name} Admin Portal")
+    site_url = getattr(settings, "FRONTEND_WEB_URL", "/")
 
     # def get_urls(self):
     #     """
