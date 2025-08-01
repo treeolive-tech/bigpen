@@ -28,25 +28,12 @@ SECRET_KEY = config(
     "SECRET_KEY", default="keep the SECRET_KEY used in production secret!"
 )
 
+
+# ------------------------------------------------------------------------------
+# Allowed Hosts
+# ------------------------------------------------------------------------------
+
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-
-
-# ------------------------------------------------------------------------------
-# 🌐 Site Configuration
-# ------------------------------------------------------------------------------
-
-SITE_URL = config("SITE_URL", default="https://preview.bigpen.co.ke")
-SITE_NAME = config("SITE_NAME", default="Online BigPen Kenya")
-SITE_SHORT_NAME = config("SITE_SHORT_NAME", default="BigPen")
-SITE_DESCRIPTION = config("SITE_DESCRIPTION", default="Delivering Stationery Supplies")
-SITE_THEME_COLOR = config("SITE_THEME_COLOR", default="#ef4444")
-SITE_KEYWORDS = config(
-    "SITE_KEYWORDS", default="bigpen, Online BigPen Kenya, ecommerce"
-)
-SITE_AUTHOR = config("SITE_AUTHOR", default="christianwhocodes")
-SITE_AUTHOR_URL = config(
-    "SITE_AUTHOR_URL", default="https://github.com/christianwhocodes/"
-)
 
 
 # ------------------------------------------------------------------------------
@@ -73,8 +60,7 @@ SITE_MANIFEST = config("SITE_MANIFEST", default="/lib/static/core/manifest.webma
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 BACKEND_DIR = BASE_DIR / "backend"
-FRONTEND_WEB_DIR = BASE_DIR / "frontend"
-FRONTEND_WEB_URL = "/"
+FRONTEND_WEB_DIR = BASE_DIR / "web"
 
 
 # ------------------------------------------------------------------------------
