@@ -1,4 +1,5 @@
 .env
+.backup
 
 # ############## Backend ##############
 /backend/static/
