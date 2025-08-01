@@ -1,0 +1,132 @@
+[
+  {
+    "model": "stock.stockcategory",
+    "pk": 1,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-book",
+      "created_at": "2025-06-18T03:15:01.740Z",
+      "updated_at": "2025-06-18T03:15:07.636Z",
+      "name": "Assessment Books",
+      "description": "Essential guides for evaluating student progress.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 2,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-receipt",
+      "created_at": "2025-06-18T03:15:32.825Z",
+      "updated_at": "2025-06-18T03:15:32.825Z",
+      "name": "Branded Receipt Books",
+      "description": "Custom receipt books for organized transactions.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 3,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-file",
+      "created_at": "2025-06-18T03:15:55.363Z",
+      "updated_at": "2025-06-18T03:15:55.363Z",
+      "name": "CBC Schemes",
+      "description": "Competency-Based Curriculum planning resources.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 4,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-pencil",
+      "created_at": "2025-06-18T03:16:19.804Z",
+      "updated_at": "2025-06-18T03:16:19.804Z",
+      "name": "Dustless Chalk",
+      "description": "Smooth, dust-free chalk for clean writing.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 5,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-house",
+      "created_at": "2025-06-18T03:16:38.283Z",
+      "updated_at": "2025-06-18T03:16:38.283Z",
+      "name": "Holiday Homework",
+      "description": "Learning activities for school breaks.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 6,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-journal-text",
+      "created_at": "2025-06-18T03:16:57.148Z",
+      "updated_at": "2025-06-18T03:16:57.148Z",
+      "name": "Lesson plans",
+      "description": "Structured teaching guides for educators.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 7,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-mortarboard",
+      "created_at": "2025-06-18T03:17:19.239Z",
+      "updated_at": "2025-06-18T03:17:19.239Z",
+      "name": "PP2 Graduation",
+      "description": "Celebrating the transition.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 8,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-clipboard-check",
+      "created_at": "2025-06-18T03:17:40.131Z",
+      "updated_at": "2025-06-18T03:17:40.131Z",
+      "name": "Primary Schools Exams",
+      "description": "Standardized tests for academic assessment.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 9,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-calendar",
+      "created_at": "2025-06-18T03:18:03.596Z",
+      "updated_at": "2025-06-18T03:18:03.596Z",
+      "name": "School Diaries",
+      "description": "Daily planners for students and teachers.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "stock.stockcategory",
+    "pk": 10,
+    "fields": {
+      "display_order": 1,
+      "bootstrap_icon": "bi bi-person-lines-fill",
+      "created_at": "2025-06-18T03:18:24.748Z",
+      "updated_at": "2025-06-18T03:18:24.748Z",
+      "name": "School Uniforms",
+      "description": "Essential guides for evaluating student progress.",
+      "is_active": true
+    }
+  }
+]
