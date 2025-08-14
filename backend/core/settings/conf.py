@@ -133,13 +133,9 @@ DATABASES = {
 # ------------------------------------------------------------------------------
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = "587"
-# EMAIL_HOST_USER = config("EMAIL_HOST_USER", default=None)
-# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default=None)
-# EMAIL_HOST = config("EMAIL_HOST", default=None)
 
 
 # ------------------------------------------------------------------------------

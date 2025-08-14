@@ -22,3 +22,7 @@ FRONTEND_WEB_URL = "https://www.bigpen.co.ke"
 #     "label": "Username",
 #     "placeholder": "Enter your username",
 # }
+
+# EMAIL_HOST_USER = config("EMAIL_HOST_USER", default=None)
+# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default=None)
+# EMAIL_HOST = config("EMAIL_HOST", default=None)
