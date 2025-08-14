@@ -1,0 +1,12 @@
+.env
+.backup
+
+# ############## Backend ##############
+/static/
+/media/
+/db.sqlite3
+/.venv/
+__pycache__/
+
+# # ############## Web frontend ##############
+# /web/node_modules/
