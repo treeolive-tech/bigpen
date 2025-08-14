@@ -8,14 +8,14 @@ Welcome! This is the official base repository for Djanx-based projects. It's des
 
 If you've already forked this repository, follow these steps to personalize your version:
 
-1. **Create a `.custom` folder** in the root of your fork.  
-   Add your own `README.md` inside `.custom`.
+1. Create a `.dashboard` folder in the root of your fork.  
+   Add your own `README.md` inside `.dashboard`.
 
 2. To customize the backend:  
-   Create a `custom/` folder inside the `backend/` directory and add your code there.
+   Create a `dashboard/` folder inside the `backend/` directory and add your code there.
 
 3. To customize the web frontend:  
-   Create a `custom/` folder inside the `web/` directory for your web frontend changes.
+   Create a `dashboard/` folder inside the `web/app/` directory for your web frontend changes.
 
 ---
 
@@ -24,6 +24,6 @@ This setup allows you to:
 - Safely pull updates from this base project
 - Maintain a clear structure between base and custom logic
 
-📄 [See `.custom/README.md`](./.custom/README.md) for your custom project documentation.
+📄 [See `.dashboard/README.md`](./.dashboard/README.md) for your custom project documentation.
 
-> 💡 Use the `.custom`, `frontend/custom`, and `backend/custom` folders to add your own code without rewriting the upstream files.
+> 💡 Use the `.dashboard`, `frontend/app/dashboard`, and `backend/dashboard` folders to add your own code without rewriting the upstream files.
