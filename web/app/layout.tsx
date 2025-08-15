@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 // Metadata
 export const metadata: Metadata = {
   title: {
-    template: "%s | Acme Dashboard",
-    default: "Acme Dashboard",
+    template: `%s | ${process.env.SITE_NAME || "Djanx"}`,
+    default: process.env.SITE_NAME || "Djanx",
   },
-  description: "The official Next.js Learn Dashboard built with App Router.",
-  metadataBase: new URL("https://next-learn-dashboard.vercel.sh"),
+  description: process.env.SITE_DESCRIPTION || "",
+  metadataBase: new URL(""),
 };
 
 // Root Layout

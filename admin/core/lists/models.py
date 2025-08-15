@@ -6,9 +6,7 @@ from core.globals.models import (
 from django.db import models
 
 
-class ListCategory(
-AbstractCreatedAtUpdatedAt
-):
+class ListCategory(AbstractCreatedAtUpdatedAt):
     class Meta:
         ordering = ["name"]
         verbose_name_plural = "List categories"
