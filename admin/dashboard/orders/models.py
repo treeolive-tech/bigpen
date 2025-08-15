@@ -1,11 +1,12 @@
 import uuid
 
-from core.globals.models import AbstractCreatedAtUpdatedAt
-from dashboard.stock.models import StockItem
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
+
+from dashboard.stock.models import StockItem
+from home.globals.models import AbstractCreatedAtUpdatedAt
 
 User = get_user_model()
 

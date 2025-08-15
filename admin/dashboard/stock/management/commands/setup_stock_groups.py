@@ -1,4 +1,4 @@
-from core.accounts.management.commands.setup_groups import AbstractGroupSetupCommand
+from home.accounts.management.commands.setup_groups import AbstractGroupSetupCommand
 
 from ...models import StockCategory, StockItem
 

@@ -1,6 +1,7 @@
-from core.accounts.management.commands.setup_groups import AbstractGroupSetupCommand
-from dashboard.stock.models import StockCategory, StockItem
 from django.contrib.auth import get_user_model
+
+from dashboard.stock.models import StockCategory, StockItem
+from home.accounts.management.commands.setup_groups import AbstractGroupSetupCommand
 
 from ...models import Order, OrderItem
 

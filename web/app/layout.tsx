@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: process.env.SITE_NAME || "Djanx",
   },
   description: process.env.SITE_DESCRIPTION || "",
-  metadataBase: new URL(""),
+  // metadataBase: new URL(""),
 };
 
 // Root Layout

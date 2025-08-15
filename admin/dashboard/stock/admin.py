@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from core.globals.adminsite import admin_site
+from home.globals.adminsite import admin_site
 
 from .models import StockCategory, StockItem, StockItemImage
 

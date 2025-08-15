@@ -1,14 +1,13 @@
-from core.globals.adminsite import admin_site
 from django.contrib import admin, messages
+
+from home.globals.adminsite import admin_site
 
 from .forms import OrderItemFormSet
 from .models import Order, OrderItem
 
-
 # TODO: Have the is_completed be done by the staff member assigned to the order
 
 # TODO: If the order was already marked as completed and the status says Completed, if any item is marked as incompleted it should go back to the right status.
-
 
 
 class OrderItemInline(admin.TabularInline):
