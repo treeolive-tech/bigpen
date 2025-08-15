@@ -3,11 +3,11 @@ from rest_framework import serializers
 from .models import ListCategory, ListItem
 
 
-class ListCategorySerializer(serializers.HyperlinkedModelSerializer):
+class ListCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ListCategory
         fields = [
-            "url",
+            "id",
             "name",
         ]
 
