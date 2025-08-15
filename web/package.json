@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "predev": "sass app/globals.scss:app/globals.css",
+    "predev": "sass app/globals.scss:public/globals.css",
     "dev": "next dev --turbopack",
-    "prebuild": "sass app/globals.scss:app/globals.css",
+    "prebuild": "sass app/globals.scss:public/globals.css --style=compressed",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

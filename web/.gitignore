@@ -20,4 +20,4 @@
 next-env.d.ts
 
 # css
-/app/globals.css*
+/public/globals.css*
