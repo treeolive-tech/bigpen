@@ -5,8 +5,10 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", include("core.globals.urls")),
+    path("accounts/", include("core.accounts.urls")),
     path("addresses/", include("core.addresses.urls")),
     path("lists/", include("core.lists.urls")),
+    path("articles/", include("core.articles.urls")),
 ]
 
 if settings.DEBUG:
