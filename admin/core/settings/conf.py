@@ -59,7 +59,7 @@ SITE_MANIFEST = config("SITE_MANIFEST", default="/lib/static/core/manifest.webma
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
-BACKEND_DIR = BASE_DIR / "backend"
+ADMIN_DIR = BASE_DIR / "admin"
 FRONTEND_WEB_DIR = BASE_DIR / "web"
 
 
@@ -122,7 +122,7 @@ WSGI_APPLICATION = "core.settings.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BACKEND_DIR / "db.sqlite3",
+        "NAME": ADMIN_DIR / "db.sqlite3",
     }
 }
 
@@ -210,7 +210,7 @@ STATICFILE_DIRS = [
 ]
 
 STATIC_URL = "/static/"
-STATIC_ROOT = BACKEND_DIR / "static"
+STATIC_ROOT = ADMIN_DIR / "static"
 
 SASS_PRECISION = 8
 
@@ -221,7 +221,7 @@ SASS_PRECISION = 8
 # ------------------------------------------------------------------------------
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BACKEND_DIR / "media"
+MEDIA_ROOT = ADMIN_DIR / "media"
 
 
 # ------------------------------------------------------------------------------

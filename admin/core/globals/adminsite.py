@@ -10,7 +10,7 @@ class AdminSite(AbstractAdminSite):
     """
 
     site_name = config("SITE_NAME", default="")
-    site_header = _(f"{site_name} Admin")
+    site_header = _(f"{site_name} Admin Portal")
     site_title = _(f"{site_name} Admin Portal")
     index_title = _(f"Welcome to the {site_name} Admin Portal")
     site_url = getattr(settings, "FRONTEND_WEB_URL", "/")

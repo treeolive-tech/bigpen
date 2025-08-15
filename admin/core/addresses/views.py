@@ -4,12 +4,20 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.db import connection
 from django.template.loader import render_to_string
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from .forms import EmailUsForm
-from .models import EmailAddress
+from .models import EmailAddress, PhoneAddress, PhysicalAddress, SocialMediaAddress
+from .serializers import (
+    EmailAddressSerializer,
+    PhoneAddressSerializer,
+    PhysicalAddressSerializer,
+    SocialMediaAddressSerializer,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -100,3 +108,31 @@ class EmailUsAPIView(APIView):
                 },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+
+class EmailAddressViewSet(ReadOnlyModelViewSet):
+    queryset = EmailAddress.objects.all()
+    serializer_class = EmailAddressSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["is_primary"]
+
+
+class PhoneAddressViewSet(ReadOnlyModelViewSet):
+    queryset = PhoneAddress.objects.all()
+    serializer_class = PhoneAddressSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["is_primary", "use_for_whatsapp", "is_active"]
+
+
+class PhysicalAddressViewSet(ReadOnlyModelViewSet):
+    queryset = PhysicalAddress.objects.all()
+    serializer_class = PhysicalAddressSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["use_in_contact_form", "is_active"]
+
+
+class SocialMediaAddressViewSet(ReadOnlyModelViewSet):
+    queryset = SocialMediaAddress.objects.all()
+    serializer_class = SocialMediaAddressSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["is_active"]
