@@ -1,7 +1,9 @@
 {
   "private": true,
   "scripts": {
+    "predev": "sass app/globals.scss:app/globals.css",
     "dev": "next dev --turbopack",
+    "prebuild": "sass app/globals.scss:app/globals.css",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -10,6 +12,7 @@
     "aos": "^2.3.4",
     "bootstrap": "5.3.7",
     "bootstrap-icons": "1.13.1",
+    "clsx": "^2.1.1",
     "glightbox": "3.3.1",
     "htmx.org": "2.0.4",
     "imagesloaded": "5.0.0",
@@ -17,7 +20,6 @@
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sass": "1.78.0",
     "waypoints": "4.0.1"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "sass": "1.78.0",
     "typescript": "^5"
   }
 }
