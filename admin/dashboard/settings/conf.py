@@ -1,4 +1,4 @@
-from core.settings.conf import *  # noqa: F403
+from home.settings.conf import *  # noqa: F403
 
 ROOT_URLCONF = "dashboard.settings.urls"
 
