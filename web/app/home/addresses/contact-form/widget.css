@@ -1,0 +1,46 @@
+.contact .contact-form {
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+  padding: 30px;
+}
+
+.contact .contact-form input,
+.contact .contact-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.contact .contact-form input:focus,
+.contact .contact-form textarea:focus {
+  border-color: var(--bs-primary);
+}
+
+.contact .contact-form input {
+  padding: 10px 15px;
+}
+
+.contact .contact-form textarea {
+  padding: 12px 15px;
+}
+
+.contact .contact-form button[type="submit"] {
+  background: var(--bs-primary);
+  border: 0;
+  padding: 10px 24px;
+  color: var(--contrast-color);
+  transition: 0.4s;
+}
+
+.contact .contact-form button[type="submit"]:hover {
+  background: color-mix(in srgb, var(--bs-primary), transparent 25%);
+}
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

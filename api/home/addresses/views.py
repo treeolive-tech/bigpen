@@ -1,13 +1,15 @@
+import json
 import logging
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.db import connection
+from django.http import HttpResponseNotAllowed, JsonResponse
 from django.template.loader import render_to_string
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from .forms import EmailUsForm
@@ -22,19 +24,34 @@ from .serializers import (
 logger = logging.getLogger(__name__)
 
 
-class EmailUsAPIView(APIView):
+@method_decorator(csrf_exempt, name="dispatch")
+class EmailUsView(View):
+    def get(self, request):
+        return HttpResponseNotAllowed(["POST"])
+
     def post(self, request):
         try:
-            # Use Django form for validation
-            form = EmailUsForm(request.data)
+            # Parse JSON data only
+            try:
+                json_data = json.loads(request.body)
+                form = EmailUsForm(json_data)
+            except json.JSONDecodeError:
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "message": "Invalid JSON data.",
+                    },
+                    status=400,
+                )
+
             if not form.is_valid():
-                return Response(
+                return JsonResponse(
                     {
                         "success": False,
                         "message": "Please correct the errors below.",
                         "errors": form.errors,
                     },
-                    status=status.HTTP_400_BAD_REQUEST,
+                    status=400,
                 )
 
             # Extract validated data
@@ -92,7 +109,7 @@ class EmailUsAPIView(APIView):
             msg.attach_alternative(html_content, "text/html")
             msg.send()
 
-            return Response(
+            return JsonResponse(
                 {
                     "success": True,
                     "message": "Thank you for your message! We will get back to you soon.",
@@ -101,12 +118,12 @@ class EmailUsAPIView(APIView):
 
         except Exception as e:
             logger.error(f"Error sending contact email: {str(e)}")
-            return Response(
+            return JsonResponse(
                 {
                     "success": False,
                     "message": "There was an error sending your message. Please try again later.",
                 },
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                status=500,
             )
 
 
