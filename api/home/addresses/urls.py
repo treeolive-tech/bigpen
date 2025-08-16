@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 
 from .views import (
     EmailAddressViewSet,
-    EmailUsAPIView,
+    EmailUsView,
     PhoneAddressViewSet,
     PhysicalAddressViewSet,
     SocialMediaAddressViewSet,
@@ -16,6 +16,6 @@ router.register(r"physical", PhysicalAddressViewSet)
 router.register(r"social", SocialMediaAddressViewSet)
 
 urlpatterns = [
-    path("email-us/", EmailUsAPIView.as_view(), name="email-us"),
+    path("email-us/", EmailUsView.as_view(), name="email-us"),
     path("", include(router.urls)),
 ]

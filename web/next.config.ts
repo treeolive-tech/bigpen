@@ -11,7 +11,15 @@ function parseApiURL(url: string) {
   };
 }
 
+const apiURL = process.env.API_URL || "http://localhost:8000";
+
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_API_URL: apiURL,
+  },
+  images: {
+    remotePatterns: [parseApiURL(apiURL)],
+  },
   async redirects() {
     return [
       {
@@ -20,11 +28,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
-  },
-  images: {
-    remotePatterns: [
-      parseApiURL(process.env.API_URL || "http://localhost:8000/api"),
-    ],
   },
 };
 

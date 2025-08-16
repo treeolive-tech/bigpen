@@ -18,32 +18,10 @@ class SocialMediaAddressForm(UniqueChoiceFormMixin, forms.ModelForm):
 
 
 class EmailUsForm(forms.Form):
-    name = forms.CharField(
-        label="Your Name",
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Your Name"}
-        ),
-    )
-    email = forms.EmailField(
-        label="Your Email",
-        widget=forms.EmailInput(
-            attrs={"class": "form-control", "placeholder": "Your Email"}
-        ),
-    )
-    subject = forms.CharField(
-        label="Subject",
-        max_length=200,
-        widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Subject"}
-        ),
-    )
-    message = forms.CharField(
-        label="Message",
-        widget=forms.Textarea(
-            attrs={"class": "form-control", "rows": "5", "placeholder": "Message"}
-        ),
-    )
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    subject = forms.CharField(max_length=200)
+    message = forms.CharField(min_length=10)
 
     def clean_message(self):
         message = self.cleaned_data.get("message", "")
