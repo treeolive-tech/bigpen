@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import "./bootstrap.css"; // Import the compiled Bootstrap CSS
 
 export const metadata: Metadata = {
   title: {
@@ -16,10 +17,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* eslint-disable-next-line @next/next/no-css-tags */}
-        <link rel="stylesheet" href="/globals.css" />
-      </head>
       <body>{children}</body>
       <Script src="/bootstrap.bundle.min.js" />
     </html>

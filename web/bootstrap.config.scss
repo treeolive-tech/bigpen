@@ -1,15 +1,14 @@
 // Custom.scss
 // Include any default variable overrides here (though functions won’t be available)
 $primary: #ef4444;
-$modal-backdrop-opacity:  0.87;
+$modal-backdrop-opacity: 0.87;
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
 
 // Then add additional custom code here
 @font-face {
   font-family: "PreloSlab";
-  src: url("/fonts/preloslab-book.otf")
-    format("opentype");
+  src: url("/fonts/preloslab-book.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -17,8 +16,7 @@ $modal-backdrop-opacity:  0.87;
 
 @font-face {
   font-family: "PreloSlab";
-  src: url("/fonts/preloslab-bold.otf")
-    format("opentype");
+  src: url("/fonts/preloslab-bold.otf") format("opentype");
   /* Assuming this exists */
   font-weight: 700;
   font-style: normal;
@@ -26,8 +24,9 @@ $modal-backdrop-opacity:  0.87;
 }
 
 :root {
-  --default-font: "PreloSlab", "Roboto", system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  --default-font:
+    "PreloSlab", "Roboto", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "PreloSlab", sans-serif;
   /* Was using "Montserrat" */
