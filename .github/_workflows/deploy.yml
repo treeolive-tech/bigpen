@@ -1,3 +1,12 @@
+# - API
+# DJANGO_SETTINGS_MODULE
+# SECRET_KEY
+# WEB_URL
+
+# - web
+# API_URL
+
+
 name: Deploy Django App
 
 on:
