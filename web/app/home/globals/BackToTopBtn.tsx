@@ -43,7 +43,7 @@ export default function BackToTopBtn() {
       className={clsx(
         styles["back-to-top"],
         { [styles.visible]: isVisible },
-        "d-flex align-items-center justify-content-center position-fixed end-0 bottom-0 mb-3 me-3"
+        "d-flex align-items-center justify-content-center position-fixed end-0 bottom-0 mb-3 me-3",
       )}
     >
       <i className="bi bi-arrow-up-short"></i>
