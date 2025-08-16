@@ -52,7 +52,7 @@ export default function BackToTopBtn() {
       className={clsx(
         "d-flex align-items-center justify-content-center position-fixed end-0 bottom-0 mb-3 me-3",
         "rounded z-2",
-        { "opacity-1 visible": isVisible, "opacity-0 invisible": !isVisible }
+        { "opacity-1 visible": isVisible, "opacity-0 invisible": !isVisible },
       )}
     >
       <i className="bi bi-arrow-up-short fs-3 text-white"></i>
