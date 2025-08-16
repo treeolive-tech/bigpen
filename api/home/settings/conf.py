@@ -54,6 +54,13 @@ SITE_MANIFEST = config("SITE_MANIFEST", default="/lib/static/home/manifest.webma
 
 
 # ------------------------------------------------------------------------------
+# 🖼️ Urls
+# ------------------------------------------------------------------------------
+
+WEB_URL = config("WEB_URL", default="http://localhost:3000")
+
+
+# ------------------------------------------------------------------------------
 # 📁 Project Directory Structure
 # ------------------------------------------------------------------------------
 
@@ -84,8 +91,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd Party Apps
     "rest_framework",
+    "corsheaders",
     "django_filters",
-    "sass_processor",
     "phonenumber_field",
     "django_ckeditor_5",
     # Local Apps
@@ -164,6 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -195,24 +203,23 @@ TEMPLATES = [
 
 
 # ------------------------------------------------------------------------------
+# 📂 CORS
+# https://pypi.org/project/django-cors-headers/
+# ------------------------------------------------------------------------------
+
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOWED_ORIGINS = [WEB_URL]
+
+
+# ------------------------------------------------------------------------------
 # 📂 Static & Sass Files
 # https://docs.djangoproject.com/en/stable/howto/static-files/
 # ------------------------------------------------------------------------------
 
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "sass_processor.finders.CssFinder",
-]
-
-STATICFILE_DIRS = [
-    FRONTEND_WEB_DIR / "node_modules",
-]
-
 STATIC_URL = "/static/"
 STATIC_ROOT = API_DIR / "static"
-
-SASS_PRECISION = 8
 
 
 # ------------------------------------------------------------------------------
