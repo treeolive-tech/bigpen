@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./bootstrap.css"; // Import the compiled Bootstrap CSS
+import "bootstrap-icons/font/bootstrap-icons.min.css";
+import BackToTopBtn from "./home/globals/BackToTopBtn";
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <BackToTopBtn />
+      </body>
       <Script src="/bootstrap.bundle.min.js" />
     </html>
   );
