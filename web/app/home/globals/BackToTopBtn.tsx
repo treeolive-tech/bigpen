@@ -1,9 +1,11 @@
+"use client";
+
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import styles from "./BackToTopBtn.module.css";
 
 export default function BackToTopBtn() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // This function checks the scroll position.
@@ -34,19 +36,27 @@ export default function BackToTopBtn() {
 
   return (
     <a
+      id="back-to-top"
       href="#"
       onClick={handleClick}
-      // The className combines:
-      // - The CSS module class for styling (.back-to-top)
-      // - The "visible" class from the module if the button should be visible
-      // - Bootstrap utility classes for positioning and layout
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        width: "40px",
+        height: "40px",
+        transition: "all 0.4s",
+        backgroundColor: isHovered
+          ? "color-mix(in srgb, var(--bs-primary), transparent 20%)"
+          : "var(--bs-primary)",
+      }}
       className={clsx(
-        styles["back-to-top"],
-        { [styles.visible]: isVisible },
         "d-flex align-items-center justify-content-center position-fixed end-0 bottom-0 mb-3 me-3",
+        "rounded z-2",
+        { "opacity-1 visible": isVisible, "opacity-0 invisible": !isVisible }
       )}
     >
-      <i className="bi bi-arrow-up-short"></i>
+      <i className="bi bi-arrow-up-short fs-3 text-white"></i>
     </a>
   );
 }
+// This component is a "Back to Top" button that appears when the user scrolls down the page.
