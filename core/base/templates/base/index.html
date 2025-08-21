@@ -1,0 +1,57 @@
+{% load base_tags %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {# meta tags #}
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="author" content='{% base "SITE_AUTHOR" %}' />
+    <meta name="description" content='{% base "SITE_DESCRIPTION" %}' />
+    <meta name="keywords" content='{% base "SITE_KEYWORDS" %}' />
+    {# Twitter #}
+    <meta name="twitter:image" content='{% base "SITE_LOGO" %}' />
+    <meta name="twitter:card" content='{% base "SITE_DESCRIPTION" %}' />
+    <meta name="twitter:site" content='{% base "SITE_URL" %}' />
+    <meta name="twitter:title" content='{% base "SITE_NAME" %}' />
+    <meta name="twitter:description" content='{% base "SITE_DESCRIPTION" %}' />
+    <meta name="twitter:image:alt" content='{% base "SITE_NAME" %}' />
+    {# Open Graph #}
+    <meta property="og:image" content='{% base "SITE_LOGO" %}' />
+    <meta property="og:url" content='{% base "SITE_URL" %}' />
+    <meta property="og:site_name" content='{% base "SITE_NAME" %}' />
+    <meta property="og:title" content='{% base "SITE_NAME" %}' />
+    <meta property="og:locale" content="en_GB" />
+    {# Icons & Manifest #}
+    <link rel='icon' type='image/x-icon' href='{% base "SITE_FAVICON" %}'>
+    <link rel='apple-touch-icon'
+          href='{% base "SITE_APPLE_TOUCH_ICON" %}'
+          sizes='180x180'>
+    <link rel='icon'
+          type='image/png'
+          sizes='192x192'
+          href='{% base "SITE_ANDROID_CHROME_ICON" %}' />
+    <meta name='msapplication-TileImage' content='{% base "SITE_MS_TILE" %}' />
+    <link rel='manifest' href='{% base "SITE_MANIFEST" %}'>
+    {# vendors #}
+    {% include "base/vendors/bootstrap.html" %}
+    {% include "base/vendors/bootstrap-icons.html" %}
+    {% include "base/vendors/aos.html" %}
+
+    {% block assets %}
+    {% endblock assets %}
+
+    {% base_title %}
+  </head>
+  <body>
+    <main>
+
+      {% block main %}
+      {% endblock main %}
+
+    </main>
+    {% include "accounts/widgets/form-logout.html" %}
+    {% include "base/widgets/btn-back-to-top.html" %}
+    {% include "base/widgets/modal-preloader.html" %}
+  </body>
+</html>

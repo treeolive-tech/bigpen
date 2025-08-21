@@ -1,0 +1,38 @@
+{% load static %}
+
+{% if modal_preloader|default_if_none:True %}
+  <div id="modal-preloader" class="z-3"></div>
+  <style>
+    #modal-preloader {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background-color: var(--background-color);
+      transition: all 0.6s ease-out;
+    }
+
+    #modal-preloader:before {
+      content: "";
+      position: fixed;
+      top: calc(50% - 30px);
+      left: calc(50% - 30px);
+      border: 6px solid var(--bs-primary);
+      border-top-color: color-mix(in srgb, var(--bs-primary), transparent 90%);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: animate-preloader 1s linear infinite;
+    }
+
+    @keyframes animate-preloader {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script defer src="{% static 'base/widgets/modal-preloader.js' %}"></script>
+{% endif %}

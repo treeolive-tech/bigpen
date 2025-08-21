@@ -1,0 +1,41 @@
+{% load static %}
+
+{% if btn_back_to_top|default_if_none:True %}
+  <a href="#"
+     id="btn-back-to-top"
+     class="d-flex align-items-center justify-content-center position-fixed end-0 bottom-0 mb-3 me-3 z-2">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  <style>
+    #btn-back-to-top {
+      position: fixed;
+      visibility: hidden;
+      opacity: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      transition: all 0.4s;
+    }
+
+    #btn-back-to-top {
+      background: var(--bs-primary);
+    }
+
+    #btn-back-to-top i {
+      font-size: 24px;
+      color: var(--contrast-color);
+      line-height: 0;
+    }
+
+    #btn-back-to-top:hover {
+      background-color: color-mix(in srgb, var(--bs-primary), transparent 20%);
+      color: var(--contrast-color);
+    }
+
+    #btn-back-to-top.active {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+  <script defer src="{% static 'base/widgets/btn-back-to-top.js' %}"></script>
+{% endif %}

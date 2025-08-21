@@ -1,8 +1,0 @@
-.env
-.backup
-/static/
-/media/
-/db.sqlite3
-/.venv/
-__pycache__/
-
