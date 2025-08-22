@@ -19,6 +19,7 @@ django-ckeditor-5 = "0.2.18"
 
 [tool.poetry.group.dev.dependencies]
 djlint = "^1.36.4"
+django-browser-reload = "^1.18.0"
 
 [tool.djlint]
 format_css = true

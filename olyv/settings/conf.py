@@ -73,6 +73,9 @@ INSTALLED_APPS = [
     "olyv.articles",
 ]
 
+if DEBUG:
+    INSTALLED_APPS.append("django_browser_reload")
+
 
 # ------------------------------------------------------------------------------
 # 🌐 URL Configuration
@@ -144,7 +147,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE.append(
+        "django_browser_reload.middleware.BrowserReloadMiddleware",
+    )
 
 
 # ------------------------------------------------------------------------------
