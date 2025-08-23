@@ -1,4 +1,4 @@
-const btnBackToTop = document.querySelector("#btn-back-to-top");
+const btnBackToTop = document.querySelector("#btn_back_to_top");
 
 function toggleScrollTop() {
   if (!btnBackToTop) return;

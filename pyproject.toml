@@ -5,7 +5,8 @@ package-mode = false
 python = ">=3.13"
 tzdata = "^2025.2"
 psycopg = {extras = ["binary", "pool"], version = "^3.2.9"}
-gunicorn = "23.0.0"
+django-browser-reload = "^1.18.0"
+gunicorn = "^23.0.0"
 pillow = "11.3.0"
 django = "5.2.5"
 libsass = "0.23.0"
@@ -19,7 +20,6 @@ django-ckeditor-5 = "0.2.18"
 
 [tool.poetry.group.dev.dependencies]
 djlint = "^1.36.4"
-django-browser-reload = "^1.18.0"
 
 [tool.djlint]
 format_css = true

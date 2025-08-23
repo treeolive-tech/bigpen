@@ -44,14 +44,16 @@
     {% title %}
   </head>
   <body>
-    {% include "accounts/widgets/form-logout.html" %}
-    {% include "base/widgets/modal-preloader.html" %}
-    {% include "base/widgets/btn-back-to-top.html" %}
+    {% include "base/modals/preloader.html" %}
+    {% include "base/sections/navigation.html" %}
     <main>
+      {% include "base/sections/hero.html" %}
 
       {% block main %}
       {% endblock main %}
 
     </main>
+    {% include "base/btns/back-to-top.html" %}
+    {% include "accounts/forms/logout.html" %}
   </body>
 </html>

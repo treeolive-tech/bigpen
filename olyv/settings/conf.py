@@ -43,13 +43,6 @@ LIB_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ------------------------------------------------------------------------------
-# 📁 Navigation
-# ------------------------------------------------------------------------------
-
-NAVIGATION_TYPE = "navbar"
-
-
-# ------------------------------------------------------------------------------
 # 📦 Installed Apps
 # https://docs.djangoproject.com/en/stable/ref/settings/#installed-apps
 # ------------------------------------------------------------------------------
@@ -61,20 +54,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_browser_reload",
+    "django_ckeditor_5",
     "rest_framework",
     "sass_processor",
     "django_filters",
     "phonenumber_field",
-    "django_ckeditor_5",
     "olyv.base",
     "olyv.accounts",
     "olyv.addresses",
     "olyv.lists",
     "olyv.articles",
 ]
-
-if DEBUG:
-    INSTALLED_APPS.append("django_browser_reload")
 
 
 # ------------------------------------------------------------------------------
@@ -149,11 +140,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
-
-if DEBUG:
-    MIDDLEWARE.append(
-        "django_browser_reload.middleware.BrowserReloadMiddleware",
-    )
 
 
 # ------------------------------------------------------------------------------

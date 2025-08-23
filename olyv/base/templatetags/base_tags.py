@@ -24,9 +24,10 @@ def get_env(env_value: str) -> str:
                   - "SITE_APPLE_TOUCH_ICON": Apple touch icon
                   - "SITE_ANDROID_CHROME_ICON": Android chrome icon
                   - "SITE_MS_TILE": Microsoft tile icon
+                  - "SITE_HERO_1": Hero image 1
 
                   Any other environment variable can also be retrieved (e.g., "SITE_NAME",
-                  "DEBUG", "DATABASE_URL", etc.) but will use empty string as default.
+                  "DEBUG", etc.) but will use empty string as default.
 
     Returns:
         The environment variable value stripped of whitespace. For asset variables,
@@ -40,15 +41,17 @@ def get_env(env_value: str) -> str:
     """
     match env_value:
         case "SITE_LOGO":
-            default = static("base/images/logo.png")
+            default = static("base/globals/logo.png")
         case "SITE_FAVICON":
-            default = static("base/images/favicon.ico")
+            default = static("base/globals/favicon.ico")
         case "SITE_APPLE_TOUCH_ICON":
-            default = static("base/images/apple-touch-icon.png")
+            default = static("base/globals/apple-touch-icon.png")
         case "SITE_ANDROID_CHROME_ICON":
-            default = static("base/images/android-chrome-icon.png")
+            default = static("base/globals/android-chrome-icon.png")
         case "SITE_MS_TILE":
-            default = static("base/images/mstile.png")
+            default = static("base/globals/mstile.png")
+        case "SITE_HERO_1":
+            default = static("base/sections/hero-1.jpg")
         case _:
             default = ""
 
